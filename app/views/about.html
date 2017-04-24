@@ -1,0 +1,18 @@
+<h1>Notes</h1>
+<p>In this version, I was attempting to use a tutorial that I'd found about simple animation of google map markers, https://modernweb.com/google-maps-markers/. What this approach gave us was the ability to use ngMap and ng-repeat to update the markers every 2 seconds with API data and no console errors.</p>
+<p>We were getting a lots of errors in trying to get the code base working with ngMaps. While the animation of markers was working, the console was filling with hundreds of errors due to $watchers being overrun with multiple $scope.markers being returned from the code. 
+<br /><code>10 $digest() iterations reached. Aborting</code></p>
+<p>
+Our approach here is to use the markerStore object to hold the markers data we're pulling in from the API. I added a utility function I found to test for an object being empty. We then markerStore to the markers being returned from the API.
+</p>
+<p>
+After the initial seeding of data we loop over the markerStore and markers looking for matches on id which is the shuttle id. If we have a match, we overwrite the entry with updated data.
+</p>
+<p>
+In our view, we are using ngMap configuration and markers directive to ng-repeat over the $scope.markerStore object to create a marker and ultimately move the marker around the map. We then added the infowindow and another utility function to grab the marker.type and put it in popup.
+</p>
+<p>
+Finally, we've started adding more function code fillStops() from the original and the images assocated with the inner and outer stops and the controller dialog.js that creates modal windows for us. Then we'll have to go back and review Kevin's code base looking for functions to add and test. We'll definitely want to look at this on some mobile devices to see how things look.
+</p>
+<p> We did have to do some research on why our paths were not switching between pages. Used a fix found in the issues list. Involved using $locationProvider in the map app.js controller.
+</p>
