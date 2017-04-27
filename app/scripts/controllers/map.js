@@ -19,6 +19,10 @@ $scope.map.events = [];
 // put some data on the map
 fillStops();
 getMarkers();
+var center = map.getCenter();
+google.maps.event.addDomListener(window, 'resize', function() {
+  map.setCenter(center);
+});
 });
 
 $scope.showShuttle = function(event, item) {
@@ -67,12 +71,12 @@ function getMarkers() {
 		$scope.markerStore = markerStore;
 		window.setTimeout(getMarkers,INTERVAL);
 	}, "json");
-	
+
 }
 
 /*
  * Stops are static and therefor don't need to be retrieved from the server, so
- * they are statically defined here. May move them to a utility file later :) 
+ * they are statically defined here. May move them to a utility file later :)
  */
 var fillStops = function() {
 	var InnerLoopstopData = [
@@ -178,7 +182,7 @@ var onclickedStop = function( stop ){
 var closeStopDialog = function( stop ){
 		alert(stop);
 	};
-	
+
 $scope.showStop = function($event) {
 	    $mdDialog.show({
 	      clickOutsideToClose: true,
