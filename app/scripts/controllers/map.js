@@ -25,7 +25,7 @@ var center = map.getCenter();
 // map.setCenter(center);
 google.maps.event.addDomListener(window, 'resize', function() {
   map.setCenter(center);
-})
+});
 });
 
 $scope.showShuttle = function(event, item) {
@@ -186,19 +186,35 @@ var closeStopDialog = function( stop ){
 		alert(stop);
 	};
 
-$scope.showStop = function($event) {
-	    $mdDialog.show({
-	      clickOutsideToClose: true,
-	      controller: DialogController,
-	      templateUrl: '../../views/stopDialog.html',
-	      targetEvent: $event,
-	      locals: { stop: $scope.currentStopName, id:$scope.currentStopId, type:$scope.currentStopType, map:$scope.map, maps:$scope.maps, marker:$scope.currBus}
-	    })
-	    .then(function() {
-	      //nothing
-	    }, function() {
-	      //nothing
-	    });
-};
+// $scope.showStop = function($event) {
+// 	    $mdDialog.show({
+// 	      clickOutsideToClose: true,
+// 	      controller: DialogController,
+// 	      templateUrl: '../../views/stopDialog.html',
+// 	      targetEvent: $event,
+// 	      locals: { stop: $scope.currentStopName, id:$scope.currentStopId, type:$scope.currentStopType, map:$scope.map, maps:$scope.maps, marker:$scope.currBus}
+// 	    })
+// 	    .then(function() {
+// 	      //nothing
+// 	    }, function() {
+// 	      //nothing
+// 	    });
+// };
+
+$scope.showStop = $modal.open({
+  templateUrl: '../../views/stopDialog.html',
+  controller: DialogController,
+  targetEvent: event,
+
+  resolve: {
+    stop: $scope.currentStopName,
+    id: $scope.currentStopId,
+    type: $scope.currentStopType,
+    map: $scope.map,
+    maps: $scope.maps,
+    marker: $scope.currBus
+  }
+});
+
 
 });
