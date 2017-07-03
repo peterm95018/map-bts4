@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-*/ 
+*/
 'use strict';
 
 /**
@@ -31,7 +31,7 @@ SOFTWARE.
  * # DialogCtrl
  * Controller for marker dialogs
  */
-function DialogController($scope, $mdDialog, stop, id, type, map, maps, route) {
+function DialogController($scope, $mdDialog, stop, id, type, map, maps, route, $uibModal) {
 	$scope.currentStopName = stop;
 	$scope.currentStopType = type;
 	if(route){
@@ -108,7 +108,7 @@ function DialogController($scope, $mdDialog, stop, id, type, map, maps, route) {
 			},
 			visible: true
 		});
-	}; 	
+	};
 
 }
 DialogController.$inject = ['$scope', '$mdDialog', 'stop', 'id', 'type', 'map', 'maps', 'marker'];
