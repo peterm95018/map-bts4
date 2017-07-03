@@ -118,3 +118,9 @@ left: 0;
 bottom: 0;
 position: absolute;
 }
+
+.md-icon-button {
+  fill: #F44336;
+  float: right;
+  vertical-align: top;
+}
